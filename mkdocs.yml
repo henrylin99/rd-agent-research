@@ -1,0 +1,73 @@
+site_name: rd-agent研究结果
+site_description: rd-agent 量化研究结果讲义 — 基于 2026-09~10 真实量化战役（A 股 / 期货 / crypto）的完整留痕，13 讲 + 2 篇番外
+site_url: https://henrylin99.github.io/rd-agent-research/
+repo_url: https://github.com/henrylin99/rd-agent-research
+repo_name: henrylin99/rd-agent-research
+
+copyright: © 2026 rd-agent研究结果 · 仅供学习交流，不构成投资建议
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: 切换深色模式
+    - scheme: slate
+      primary: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: 切换浅色模式
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tabbed
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+nav:
+  - 首页: index.md
+  - '第一章 · AI 因子工厂':
+    - ch01_ai_factor_factory/index.md
+    - '第一讲 · AI 因子工厂是怎么运转的': ch01_ai_factor_factory/E01_loop五步.md
+    - '第二讲 · 看懂排行榜：IC、超额收益与因子版本': ch01_ai_factor_factory/E02_看懂排行榜.md
+    - '第三讲 · LLM 写的因子长什么样：AI 的研究品味': ch01_ai_factor_factory/E03_AI的研究品味.md
+  - '第二章 · 诚实的验证':
+    - ch02_honest_validation/index.md
+    - '第四讲 · 为什么需要独立验证：预注册与验证管线': ch02_honest_validation/E04_独立验证与预注册.md
+    - '第五讲 · 三候选 DSR 全 FAIL 复盘': ch02_honest_validation/E05_全军覆没复盘.md
+    - '第六讲 · 一次预注册实验的完整生命周期': ch02_honest_validation/E06_一次预注册实验的完整生命周期.md
+  - '第三章 · 数据口径的暗雷':
+    - ch03_data_traps/index.md
+    - '第七讲 · D-9 勘误：双重复权': ch03_data_traps/E07_双重复权.md
+    - '第八讲 · 基准伪影': ch03_data_traps/E08_基准伪影.md
+    - '第九讲 · 期货面板五坑': ch03_data_traps/E09_期货面板五坑.md
+  - '第四章 · 活下来的策略':
+    - ch04_survivor/index.md
+    - '第十讲 · funding carry：活下来的策略长什么样': ch04_survivor/E10_funding_carry全程.md
+    - '第十一讲 · 影子模式': ch04_survivor/E11_影子模式.md
+  - '第五章 · 方法沉淀':
+    - ch05_discipline/index.md
+    - '第十二讲 · 机会筛选的纪律': ch05_discipline/E12_机会筛选纪律.md
+    - '第十三讲 · 全课程收束': ch05_discipline/E13_课程总结与战役矩阵复盘.md
+  - '番外':
+    - extras/index.md
+    - '番外一 · crypto 两轮战役': extras/EX01_crypto两轮.md
+    - '番外二 · HITL 侦察屏': extras/EX02_HITL扫描器.md
