@@ -1,0 +1,1755 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="rd-agent 量化研究结果讲义 — 基于 2026-09~10 真实量化战役（A 股 / 期货 / crypto）的完整留痕，13 讲 + 2 篇番外">
+      
+      
+      
+        <link rel="canonical" href="https://henrylin99.github.io/rd-agent-research/en/ch03_data_traps/E07_%E5%8F%8C%E9%87%8D%E5%A4%8D%E6%9D%83/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../E08_%E5%9F%BA%E5%87%86%E4%BC%AA%E5%BD%B1/">
+      
+      
+        
+          <link rel="alternate" href="../../../ch03_data_traps/E07_%E5%8F%8C%E9%87%8D%E5%A4%8D%E6%9D%83/" hreflang="zh">
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Lecture 7 · The D-9 Erratum: How an Adjustment Bug Manufactured a Fake 18% Annualized Strategy - rd-agent研究结果</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9784658154228475"
+     crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VGHZY4EELE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-VGHZY4EELE");
+  </script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lecture-7-the-d-9-erratum-how-an-adjustment-bug-manufactured-a-fake-18-annualized-strategy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="rd-agent研究结果" class="md-header__button md-logo" aria-label="rd-agent研究结果" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            rd-agent研究结果
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lecture 7 · The D-9 Erratum: How an Adjustment Bug Manufactured a Fake 18% Annualized Strategy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="indigo"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../ch03_data_traps/E07_%E5%8F%8C%E9%87%8D%E5%A4%8D%E6%9D%83/" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/henrylin99/rd-agent-research" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    henrylin99/rd-agent-research
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ch01_ai_factor_factory/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Chapter 1 · The AI Factor Factory
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ch02_honest_validation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Chapter 2 · Honest Validation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Chapter 3 · Data-Calibration Landmines
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ch04_survivor/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Chapter 4 · The Survivors
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ch05_discipline/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Chapter 5 · Distilling the Method
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../extras/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Extras
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="rd-agent研究结果" class="md-nav__button md-logo" aria-label="rd-agent研究结果" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    rd-agent研究结果
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/henrylin99/rd-agent-research" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    henrylin99/rd-agent-research
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ch01_ai_factor_factory/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1 · The AI Factor Factory
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter 1 · The AI Factor Factory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch01_ai_factor_factory/E01_loop%E4%BA%94%E6%AD%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 1 · How the AI Factor Factory Runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch01_ai_factor_factory/E02_%E7%9C%8B%E6%87%82%E6%8E%92%E8%A1%8C%E6%A6%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 2 · Reading the Leaderboard: IC, Excess Returns and Factor Versions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch01_ai_factor_factory/E03_AI%E7%9A%84%E7%A0%94%E7%A9%B6%E5%93%81%E5%91%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 3 · What LLM-Written Factors Look Like: AI's Research Taste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ch02_honest_validation/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2 · Honest Validation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter 2 · Honest Validation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch02_honest_validation/E04_%E7%8B%AC%E7%AB%8B%E9%AA%8C%E8%AF%81%E4%B8%8E%E9%A2%84%E6%B3%A8%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 4 · Why Independent Validation: Preregistration and the Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch02_honest_validation/E05_%E5%85%A8%E5%86%9B%E8%A6%86%E6%B2%A1%E5%A4%8D%E7%9B%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 5 · Post-mortem: Three Candidates, All FAIL DSR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch02_honest_validation/E06_%E4%B8%80%E6%AC%A1%E9%A2%84%E6%B3%A8%E5%86%8C%E5%AE%9E%E9%AA%8C%E7%9A%84%E5%AE%8C%E6%95%B4%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 6 · The Full Lifecycle of a Preregistered Experiment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3 · Data-Calibration Landmines
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter 3 · Data-Calibration Landmines
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 7 · D-9 Erratum: Double Adjustment
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 7 · D-9 Erratum: Double Adjustment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-case-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Case Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technical-background-dominant-continuous-contracts-and-adjustment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technical Background: Dominant-Continuous Contracts and Adjustment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-why-it-nearly-fooled-everyone-plausibility-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why It Nearly Fooled Everyone: Plausibility Bias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-the-erratum-happened-process-not-inspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How the Erratum Happened: Process, Not Inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-chain-of-dispositions-after-the-erratum-more-important-than-the-erratum-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The Chain of Dispositions After the Erratum (More Important than the Erratum Itself)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-lecture-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lecture Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../E08_%E5%9F%BA%E5%87%86%E4%BC%AA%E5%BD%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 8 · Baseline Artifacts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../E09_%E6%9C%9F%E8%B4%A7%E9%9D%A2%E6%9D%BF%E4%BA%94%E5%9D%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 9 · Five Traps in the Futures Panel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ch04_survivor/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4 · The Survivors
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter 4 · The Survivors
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch04_survivor/E10_funding_carry%E5%85%A8%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 10 · Funding Carry: What a Surviving Strategy Looks Like
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch04_survivor/E11_%E5%BD%B1%E5%AD%90%E6%A8%A1%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 11 · Shadow Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ch05_discipline/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5 · Distilling the Method
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapter 5 · Distilling the Method
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch05_discipline/E12_%E6%9C%BA%E4%BC%9A%E7%AD%9B%E9%80%89%E7%BA%AA%E5%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 12 · The Discipline of Opportunity Screening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ch05_discipline/E13_%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93%E4%B8%8E%E6%88%98%E5%BD%B9%E7%9F%A9%E9%98%B5%E5%A4%8D%E7%9B%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lecture 13 · Wrapping Up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../extras/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extras
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extras
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/EX01_crypto%E4%B8%A4%E8%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extra 1 · The Two-Round Crypto Campaign
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extras/EX02_HITL%E6%89%AB%E6%8F%8F%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extra 2 · The HITL Scout Screen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-case-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Case Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technical-background-dominant-continuous-contracts-and-adjustment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technical Background: Dominant-Continuous Contracts and Adjustment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-why-it-nearly-fooled-everyone-plausibility-bias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why It Nearly Fooled Everyone: Plausibility Bias
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-the-erratum-happened-process-not-inspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How the Erratum Happened: Process, Not Inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-chain-of-dispositions-after-the-erratum-more-important-than-the-erratum-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. The Chain of Dispositions After the Erratum (More Important than the Erratum Itself)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-lecture-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lecture Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lecture-7-the-d-9-erratum-how-an-adjustment-bug-manufactured-a-fake-18-annualized-strategy">Lecture 7 · The D-9 Erratum: How an Adjustment Bug Manufactured a Fake 18% Annualized Strategy<a class="headerlink" href="#lecture-7-the-d-9-erratum-how-an-adjustment-bug-manufactured-a-fake-18-annualized-strategy" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Chapter 3 · Hidden Mines in Data Conventions (Lecture 1)
+Learning objectives: understand the adjustment mechanics of futures dominant-continuous contracts and how the "double adjustment" bug arises; master the concept of "plausibility bias"; understand the institutional handling of errata.
+Prerequisites: Lecture 2 (where the carry factor first appears), Lecture 4 (the pre-registration institution).</p>
+</blockquote>
+<h2 id="1-case-overview">1. Case Overview<a class="headerlink" href="#1-case-overview" title="Permanent link">&para;</a></h2>
+<p>The futures round-two campaign's research matrix had an L2 line: a term-structure carry strategy (long the deeply discounted instruments, short the ones at premium, earning the spread convergence). The factory's discovery-period backtest gave:</p>
+<blockquote>
+<p><strong>Discovery period annualized +18%, the most dazzling number of the entire campaign, beautiful t-value, reasonable per-year structure.</strong></p>
+</blockquote>
+<p>Nine days later (the erratum event numbered D-9), an audit found a <strong>double adjustment</strong> in the panel construction. Recomputed after the fix:</p>
+<blockquote>
+<p><strong>Discovery period +3.18%, t = 0.66, statistically indistinguishable from zero.</strong></p>
+</blockquote>
+<p>A number fell from "nearly deployable" to "noise" with only one convention audit in between. The number itself deserves nine days of discussion, but more deserving is: <strong>why it nearly fooled everyone — including a validation institution that was already quite strict.</strong></p>
+<h2 id="2-technical-background-dominant-continuous-contracts-and-adjustment">2. Technical Background: Dominant-Continuous Contracts and Adjustment<a class="headerlink" href="#2-technical-background-dominant-continuous-contracts-and-adjustment" title="Permanent link">&para;</a></h2>
+<p>Futures have no single continuous ticker like stocks. When building a panel, one usually takes the "dominant continuous": each monthly contract expires and switches to the new dominant, and the segments are spliced into one continuous series. At the splice points (roll days) the two contracts have different prices (premium/discount), and splicing directly produces fake gaps — hence <strong>adjustment</strong>: at roll days, shift or ratio-adjust the historical series as a whole to eliminate the splice gap.</p>
+<p>This campaign's panel used <strong>settlement-price-splice adjustment</strong>: splicing anchored on settlement prices.</p>
+<p><strong>The double adjustment bug's mechanism</strong>: two places in the construction pipeline each independently adjusted for the roll gap (one an explicit adjustment step, one hidden inside the return series construction). The two adjustments stacked, with the effect of <strong>over-correcting slightly in the same direction at every roll</strong>. 23 instruments × four years × several rolls per year — the error was not random noise but a <strong>systematic one-directional drift</strong>.</p>
+<p>This is the key: random noise cancels out and makes t-values ugly; <strong>systematic bias accumulates in one direction and makes t-values beautiful</strong>. The carry strategy naturally holds both long and short legs with holding periods spanning roll days — it swallowed the one-directional drift wholesale into its returns.</p>
+<h2 id="3-why-it-nearly-fooled-everyone-plausibility-bias">3. Why It Nearly Fooled Everyone: Plausibility Bias<a class="headerlink" href="#3-why-it-nearly-fooled-everyone-plausibility-bias" title="Permanent link">&para;</a></h2>
+<p>This is the concept this lecture most wants to leave you with. Why wasn't the +18% suspected immediately?</p>
+<p>Because <strong>it looked too reasonable</strong>. Term-structure carry has literature precedent (commodity carry is a classic risk premium), and "18% annualized" lands within the expectation band of "this strategy is supposed to make money, and quite a lot of it". The psychological default when humans check numbers is: <strong>audit the outrageous, wave through the reasonable</strong> — and a high-quality bug produces exactly reasonable numbers.</p>
+<p>Contrast with a thought experiment: had the same pipeline error made the carry backtest show <strong>annualized −25%</strong>, it would not have survived the afternoon — too outrageous, someone would surely investigate. A bug in the wrong direction exposes itself; a bug in the right direction hides itself.</p>
+<blockquote>
+<p><strong>Plausibility bias</strong>: the consistency of a number with prior expectations gets misused as evidence of the number's correctness. The two are independent — the bug doesn't understand finance; it just happens to lean the way you hoped.</p>
+</blockquote>
+<p>Corollary: for a result that <strong>fits expectations especially well</strong>, audit priority should go <strong>up</strong>, not down. Counterintuitive, but the logic holds: good results get deployed, bad results merely get ignored — being wrong about the good is costly, being wrong about the bad is cheap.</p>
+<h2 id="4-how-the-erratum-happened-process-not-inspiration">4. How the Erratum Happened: Process, Not Inspiration<a class="headerlink" href="#4-how-the-erratum-happened-process-not-inspiration" title="Permanent link">&para;</a></h2>
+<p>This bug was not "spotted"; it was <strong>forced out by process</strong>. The trigger chain:</p>
+<ol>
+<li><strong>Independent recomputation requirement</strong>: before the L2 line entered formal validation, the pipeline required the return series to be independently recomputed from raw data, not consuming the factory panel's ready-made return column</li>
+<li><strong>Cross-reconciliation</strong>: the independent recomputation didn't match the factory panel — the differences concentrated near roll days</li>
+<li><strong>Root cause localization</strong>: comparing the two code paths, the duplicated adjustment step was found</li>
+<li><strong>Erratum execution</strong>: panel rebuilt, all historical conclusions restated per "corrected numbers", the erratum document numbered and archived (D-9)</li>
+</ol>
+<p>Note step 1 — it is exactly Lecture 4's "component one: independent data recomputation" in the flesh. Had the validation pipeline consumed the factory panel directly, this bug would have been inherited forever, and carry would have marched into shadow monitoring carrying its fake 18% annualized.</p>
+<p><strong>The second-order value of the paper trail</strong> also shows here: because old conclusions could be recomputed, the erratum could "restate history" rather than "start over" — the +18% was rewritten as +3.18%, not quietly deleted.</p>
+<h2 id="5-the-chain-of-dispositions-after-the-erratum-more-important-than-the-erratum-itself">5. The Chain of Dispositions After the Erratum (More Important than the Erratum Itself)<a class="headerlink" href="#5-the-chain-of-dispositions-after-the-erratum-more-important-than-the-erratum-itself" title="Permanent link">&para;</a></h2>
+<p>Finding the bug is only the beginning; an honest system must handle its <strong>entire downstream</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Disposition</th>
+<th>Content</th>
+<th>Logic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol revision</td>
+<td>Research protocol versioned (v1.0 + D-9 revision), erratum on record</td>
+<td>Rule changes must leave a trail, preventing "it changed so it never happened"</td>
+</tr>
+<tr>
+<td>Power withdrawal</td>
+<td>The original OOS decision threshold was based on the +18% expected magnitude; after correction, +3.18% corresponds to extremely low statistical power (350-day window, ~7% under normal approximation) — the original threshold effectively <strong>cannot adjudicate</strong></td>
+<td>Thresholds were designed for large effects; after the effect shrinks the threshold fails, and continuing to use it is formalism</td>
+</tr>
+<tr>
+<td>Priority downgrade</td>
+<td>L2 demoted from the main line to a low-priority watch line</td>
+<td>The effect may exist but is too small to justify main-line investment</td>
+</tr>
+<tr>
+<td>Suspend deployment investment</td>
+<td>Explicit rule: even if later OOS ≥10%, it does not alone trigger deployment</td>
+<td>Prevents the "eager to redeem after correction" psychology from re-inflating a small effect</td>
+</tr>
+<tr>
+<td>Narrow audit annotations</td>
+<td>Early audit documents annotated with narrowed applicability (rough diagnostics, excluding rolls); historical numbers unchanged</td>
+<td>An erratum does not tamper with historical documents; it only delimits their scope of validity</td>
+</tr>
+</tbody>
+</table>
+<p>"Power withdrawal" deserves the most unpacking: a pre-registered threshold (say, "OOS annualized ≥X% with p&lt;0.05") implicitly assumes the effect size is large enough that the test has adequate power at the available sample size. When the effect shrinks from 18% to 3.18%, the same threshold with the same window can barely ever judge a true effect SUPPORTED. <strong>Continuing to run a test with no power yields an uninformative result either way</strong> (ACCEPT would be luck; REJECT proves nothing). The honest handling is admitting "this question is undecidable at the current data volume" — exactly the Lecture 6 INCONCLUSIVE verdict recurring in another dimension.</p>
+<h2 id="6-lecture-summary">6. Lecture Summary<a class="headerlink" href="#6-lecture-summary" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Double adjustment = the roll adjustment applied twice; error accumulates systematically in one direction, feeding precisely the carry strategy which holds across rolls</li>
+<li>Systematic bias makes t-values beautiful; random noise makes them ugly — <strong>beautiful numbers are not necessarily cleaner</strong></li>
+<li>Plausibility bias: the more a result fits expectations, the more easily it passes audit unchallenged; the correction is raising audit priority for expectation-fitting results</li>
+<li>The four-piece erratum downstream: protocol versioning, power withdrawal, priority downgrade, narrowed historical annotation</li>
+<li>Independent recomputation is the only institutional means of catching this class of bugs</li>
+</ul>
+<p><strong>Discussion question</strong>: Suppose the double adjustment bug affected not carry (long/short legs held across rolls) but a 3-day short-horizon reversal strategy (positions never cross a roll day). Would the contamination be heavier or lighter? What audit principle does that suggest? (Hint: the spatial distribution of the bias determines which strategies ingest how much — rank audits by "the contact surface between the strategy and the defect mechanism", not by the strategy's return ranking.)</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2026 rd-agent研究结果 · 仅供学习交流，不构成投资建议
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
