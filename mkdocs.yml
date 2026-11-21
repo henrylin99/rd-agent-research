@@ -41,6 +41,39 @@ markdown_extensions:
 
 plugins:
   - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: zh
+          name: 中文
+          default: true
+          build: true
+        - locale: en
+          name: English
+          build: true
+          nav_translations:
+            首页: "Home"
+            第一章 · AI 因子工厂: "Chapter 1 · The AI Factor Factory"
+            第一讲 · AI 因子工厂是怎么运转的: "Lecture 1 · How the AI Factor Factory Runs"
+            第二讲 · 看懂排行榜：IC、超额收益与因子版本: "Lecture 2 · Reading the Leaderboard: IC, Excess Returns and Factor Versions"
+            第三讲 · LLM 写的因子长什么样：AI 的研究品味: "Lecture 3 · What LLM-Written Factors Look Like: AI's Research Taste"
+            第二章 · 诚实的验证: "Chapter 2 · Honest Validation"
+            第四讲 · 为什么需要独立验证：预注册与验证管线: "Lecture 4 · Why Independent Validation: Preregistration and the Pipeline"
+            第五讲 · 三候选 DSR 全 FAIL 复盘: "Lecture 5 · Post-mortem: Three Candidates, All FAIL DSR"
+            第六讲 · 一次预注册实验的完整生命周期: "Lecture 6 · The Full Lifecycle of a Preregistered Experiment"
+            第三章 · 数据口径的暗雷: "Chapter 3 · Data-Calibration Landmines"
+            第七讲 · D-9 勘误：双重复权: "Lecture 7 · D-9 Erratum: Double Adjustment"
+            第八讲 · 基准伪影: "Lecture 8 · Baseline Artifacts"
+            第九讲 · 期货面板五坑: "Lecture 9 · Five Traps in the Futures Panel"
+            第四章 · 活下来的策略: "Chapter 4 · The Survivors"
+            第十讲 · funding carry：活下来的策略长什么样: "Lecture 10 · Funding Carry: What a Surviving Strategy Looks Like"
+            第十一讲 · 影子模式: "Lecture 11 · Shadow Mode"
+            第五章 · 方法沉淀: "Chapter 5 · Distilling the Method"
+            第十二讲 · 机会筛选的纪律: "Lecture 12 · The Discipline of Opportunity Screening"
+            第十三讲 · 全课程收束: "Lecture 13 · Wrapping Up"
+            番外: "Extras"
+            番外一 · crypto 两轮战役: "Extra 1 · The Two-Round Crypto Campaign"
+            番外二 · HITL 侦察屏: "Extra 2 · The HITL Scout Screen"
 
 nav:
   - 首页: index.md

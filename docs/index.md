@@ -4,6 +4,9 @@ title: 课程总览
 
 # AI 挖因子时，如何不被自己和 AI 骗到
 
+!!! tip "Click the link to switch to the English version"
+    🇬🇧 This lecture series is also available in English → [Switch to English](/rd-agent-research/en/)
+
 > 基于 2026-09~10 真实量化战役（A 股 / 期货两轮 / crypto 两轮）的完整留痕写成的讲义。
 > 定位：AI 是背景板，诚实验证是主角。所有数字取自真实结果，出处见各章 README 的"数据事实备查"。
 
